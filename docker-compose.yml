@@ -1,26 +1,26 @@
----
 services:
   sonarr4k:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr4k-swarm
     environment:
-      - PUID=1000
-      - PGID=33
-      - TZ=America/Chicago
+    - PUID=1000
+    - PGID=33
+    - TZ=America/Chicago
     volumes:
-      - sonarr4k-swarm.config:/config
-      - /media/Multimedia/TV Series:/tv
-      - /media/Multimedia/Incoming/:/downloads
+    - sonarr4k-swarm_sonarr4k-swarm.config:/config
+    - /media/Multimedia/TV Series:/tv
+    - /media/Multimedia/Incoming/:/downloads
     ports:
-      - target: 8989
-        published: 8990
-        protocol: tcp
-        mode: host        
+    - target: 8989
+      published: 8990
+      protocol: tcp
+      mode: host
     deploy:
       placement:
         constraints:
-          - node.labels.deployment.target.sonarr4k == true
+        - node.labels.deployment.target.sonarr4k == true
       restart_policy:
         condition: any
 volumes:
-  sonarr4k-swarm.config:
+  sonarr4k-swarm_sonarr4k-swarm.config:
+    name: sonarr4k-swarm_sonarr4k-swarm.config
